@@ -12,7 +12,11 @@ class ViewController: UIViewController ,UITableViewDelegate,UITableViewDataSourc
     //学生与老师
     var students = [Student]()
     var teachers = [Teacher]()
-    let tableTitle = ["Student","Teacher"]
+    let tableTitle = ["Teacher","Student"]
+
+    @IBOutlet weak var MyLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -39,34 +43,79 @@ class ViewController: UIViewController ,UITableViewDelegate,UITableViewDataSourc
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //分为两个section显示
         if section == 0 {
-            return students.count
+           return teachers.count
         }else {
-            return teachers.count
+           return students.count
         }
+    
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let identifier = tableTitle[indexPath.section]
-        var cell = tableView.dequeueReusableCell(withIdentifier: identifier)
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier)
         switch identifier {
         case "Student":
             cell?.detailTextLabel?.text = "\(students[indexPath.row].gender) , "+"\(students[indexPath.row].age)岁"
             cell?.textLabel?.text = students[indexPath.row].fullName
         case "Teacher":
-            
+            cell?.detailTextLabel?.text = "\(teachers[indexPath.row].gender) , "+"\(teachers[indexPath.row].age)岁"
+            cell?.textLabel?.text = teachers[indexPath.row].fullName
         default:
+            cell?.textLabel?.text = "Nothing"
+            cell?.detailTextLabel?.text = "Nothing"
             break
         }
-        
+        return cell!
     }
     //Section的标题
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String{
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
         return tableTitle[section]
     }
     
+    //Section的数量
     func numberOfSections(in tableView: UITableView) -> Int {
         return tableTitle.count
+    }
+    
+    //选择某一个cell时
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if(indexPath.section == 0){
+            MyLabel.text = "You are choosing: \(teachers[indexPath.row].fullName)"
+        }
+        else {
+            MyLabel.text = "You are choosing: \(students[indexPath.row].fullName)"
+        }
+    }
+    
+    //支持编辑
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    //支持删除
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            if editingStyle == UITableViewCellEditingStyle.delete {
+                if indexPath.section == 0 {
+                    teachers.remove(at: indexPath.row)
+                } else {
+                    students.remove(at: indexPath.row)
+                }
+                
+                tableView.deleteRows(at: [indexPath], with: .left)
+            }
+        }
+    }
+   
+    @IBAction func AddClicked(_ sender: UIButton) {
+    }
+    
+    @IBAction func EditClicked(_ sender: UIButton) {
+        tableView.isEditing = !tableView.isEditing
     }
     
     override func didReceiveMemoryWarning() {

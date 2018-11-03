@@ -14,6 +14,7 @@
 		3F3D7D0A218D2C7000A24277 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F3D7D08218D2C7000A24277 /* LaunchScreen.storyboard */; };
 		3F3D7D15218D2C7000A24277 /* FyyEightWorkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3D7D14218D2C7000A24277 /* FyyEightWorkTests.swift */; };
 		3F3D7D20218D2C7000A24277 /* FyyEightWorkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3D7D1F218D2C7000A24277 /* FyyEightWorkUITests.swift */; };
+		3F3D7D2E218D348400A24277 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3D7D2D218D348400A24277 /* Person.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		3F3D7D1B218D2C7000A24277 /* FyyEightWorkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FyyEightWorkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F3D7D1F218D2C7000A24277 /* FyyEightWorkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FyyEightWorkUITests.swift; sourceTree = "<group>"; };
 		3F3D7D21218D2C7000A24277 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F3D7D2D218D348400A24277 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				3F3D7D06218D2C7000A24277 /* Assets.xcassets */,
 				3F3D7D08218D2C7000A24277 /* LaunchScreen.storyboard */,
 				3F3D7D0B218D2C7000A24277 /* Info.plist */,
+				3F3D7D2D218D348400A24277 /* Person.swift */,
 			);
 			path = FyyEightWork;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F3D7D2E218D348400A24277 /* Person.swift in Sources */,
 				3F3D7D02218D2C6E00A24277 /* ViewController.swift in Sources */,
 				3F3D7D00218D2C6E00A24277 /* AppDelegate.swift in Sources */,
 			);

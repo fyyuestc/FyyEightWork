@@ -125,6 +125,11 @@ class ViewController: UIViewController ,UITableViewDelegate,UITableViewDataSourc
             teachers.append(teacher)
             tableView.insertRows(at: [newIndexPath], with: .automatic)
         }
+        if let sourceViewController = sender.source as? AddViewController,let student = sourceViewController.student {
+            let newIndexPath = IndexPath(row: students.count, section: 1)
+            students.append(student)
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        }
     }
     
     override func didReceiveMemoryWarning() {

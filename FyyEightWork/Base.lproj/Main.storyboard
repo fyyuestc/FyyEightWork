@@ -265,6 +265,9 @@
                                     <color key="titleColor" red="1" green="0.34254629640000001" blue="0.1716786418" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="cxV-Bn-dAM" kind="unwind" unwindAction="unwindToTeachersWithSender:" id="Wpl-40-Sy5"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -276,6 +279,7 @@
                         <outlet property="gender" destination="nOK-cs-0cD" id="00M-Hv-fCT"/>
                         <outlet property="lastName" destination="BHO-jG-GJS" id="PDq-Lw-hdR"/>
                         <outlet property="studentSaveButton" destination="ylq-1s-zjF" id="Y3e-BB-0cW"/>
+                        <outlet property="studentSno" destination="d6v-qd-lfv" id="m4w-se-Ers"/>
                         <outlet property="teacherSaveButton" destination="xGA-Au-aee" id="APo-se-frC"/>
                         <outlet property="teacherTitle" destination="khJ-8B-Bgr" id="CfL-ag-ztG"/>
                     </connections>

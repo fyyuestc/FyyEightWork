@@ -20,6 +20,7 @@ class AddViewController : UIViewController,UINavigationControllerDelegate,UIText
     @IBOutlet weak var age: UITextField!
     @IBOutlet weak var gender: UITextField!
     @IBOutlet weak var teacherTitle: UITextField!
+    @IBOutlet weak var studentSno: UITextField!
     
     //下面两个遵守成为键盘输入代理的协议的方法
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -47,18 +48,27 @@ class AddViewController : UIViewController,UINavigationControllerDelegate,UIText
         // Dispose of any resources that can be recreated.
     }
     
+    //在segue触发时，提供一个地方执行自己的代码
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         //当提交按钮被按下时
-        guard let button = sender as? UIButton,button === teacherSaveButton else {
+        if let button = sender as? UIButton,button === teacherSaveButton{
+            let theFirstName = firstName.text ?? ""
+            let theLastName = lastName.text ?? ""
+            let theAge = Int(age.text ?? "")
+            let theGender = gender.text ?? ""
+            let theTitle = teacherTitle.text ?? ""
+            teacher = Teacher(firstName: theFirstName, lastName: theLastName, age: theAge!, gender: Gender(rawValue: theGender)!, title: theTitle, department: Department.first)
+        } else if let button = sender as? UIButton,button === studentSaveButton {
+            let theFirstName = firstName.text ?? ""
+            let theLastName = lastName.text ?? ""
+            let theAge = Int(age.text ?? "")
+            let theGender = gender.text ?? ""
+            let sno = studentSno.text ?? ""
+            student = Student(firstName: theFirstName, lastName: theLastName, age: theAge!, gender: Gender(rawValue: theGender)!, stuNo: Int(sno)!, department: Department.first)
+        }else {
             os_log("The submit button was not pressed", log: OSLog.default, type: .debug)
             return
         }
-        let theFirstName = firstName.text ?? ""
-        let theLastName = lastName.text ?? ""
-        let theAge = age.text ?? ""
-        let theGender = gender.text ?? ""
-        let theTitle = teacherTitle.text ?? ""
-        teacher = Teacher(firstName: theFirstName, lastName: theLastName, age: 1, gender: Gender(rawValue: theGender)!, title: theTitle, department: Department.first)
     }
 }

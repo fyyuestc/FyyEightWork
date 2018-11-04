@@ -118,6 +118,15 @@ class ViewController: UIViewController ,UITableViewDelegate,UITableViewDataSourc
         tableView.isEditing = !tableView.isEditing
     }
     
+    //响应addView的prepare方法，unwind segue
+    @IBAction func unwindToTeachers(sender : UIStoryboardSegue){
+        if let sourceViewController = sender.source as? AddViewController,let teacher = sourceViewController.teacher {
+            let newIndexPath = IndexPath(row: teachers.count, section: 0)
+            teachers.append(teacher)
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

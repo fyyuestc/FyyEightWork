@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Gender : Int{
+enum Gender : String{
     case male,female,unknow
     //重载>
     static func > (lhs : Gender,rhs : Gender) -> Bool{

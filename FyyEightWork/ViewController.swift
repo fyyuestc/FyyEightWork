@@ -12,7 +12,7 @@ class ViewController: UIViewController ,UITableViewDelegate,UITableViewDataSourc
     //学生与老师
     var students = [Student]()
     var teachers = [Teacher]()
-    let tableTitle = ["Teacher","Student"]
+    let tableTitle = ["Student","Teacher"]
 
     @IBOutlet weak var MyLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -43,32 +43,46 @@ class ViewController: UIViewController ,UITableViewDelegate,UITableViewDataSourc
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //分为两个section显示
         if section == 0 {
-           return teachers.count
-        }else {
            return students.count
+        }else {
+           return teachers.count
         }
     
     }
     
+    //显示
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let identifier = tableTitle[indexPath.section]
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier)
-        switch identifier {
-        case "Student":
-            cell?.detailTextLabel?.text = "\(students[indexPath.row].gender) , "+"\(students[indexPath.row].age)岁"
-            cell?.textLabel?.text = students[indexPath.row].fullName
-        case "Teacher":
-            cell?.detailTextLabel?.text = "\(teachers[indexPath.row].gender) , "+"\(teachers[indexPath.row].age)岁"
-            cell?.textLabel?.text = teachers[indexPath.row].fullName
-        default:
-            cell?.textLabel?.text = "Nothing"
-            cell?.detailTextLabel?.text = "Nothing"
-            break
+            let identifier = tableTitle[indexPath.section]
+            switch identifier {
+            case "Student":
+                var cell: studentCell!
+                cell = (tableView.dequeueReusableCell(withIdentifier: "Student") as! studentCell)
+                cell?.stuDetail?.text = "\(students[indexPath.row].gender) , "+"\(students[indexPath.row].age)岁"
+                cell?.stuName?.text = students[indexPath.row].fullName
+                cell?.stuSno?.text = "\(students[indexPath.row].stuNo)"
+                return cell!
+            case "Teacher":
+                var cell : UITableViewCell?
+                cell = tableView.dequeueReusableCell(withIdentifier: identifier)
+                cell?.detailTextLabel?.text = "\(teachers[indexPath.row].gender) , "+"\(teachers[indexPath.row].age)岁"
+                cell?.textLabel?.text = teachers[indexPath.row].fullName
+                return cell!
+            default:
+                let cell = tableView.dequeueReusableCell(withIdentifier: identifier)
+                cell?.textLabel?.text = "Nothing"
+                cell?.detailTextLabel?.text = "Nothing"
+                return cell!
         }
-        return cell!
     }
-    //Section的标题
+    //一行的高度
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return 120
+        }
+        return 102
+    }
+    
+    //Section的标题(和tableTitle一起决定了section的顺序)
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
         return tableTitle[section]
     }
@@ -81,10 +95,10 @@ class ViewController: UIViewController ,UITableViewDelegate,UITableViewDataSourc
     //选择某一个cell时
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(indexPath.section == 0){
-            MyLabel.text = "You are choosing: \(teachers[indexPath.row].fullName)"
+            MyLabel.text = "You are choosing: \(students[indexPath.row].fullName)"
         }
         else {
-            MyLabel.text = "You are choosing: \(students[indexPath.row].fullName)"
+            MyLabel.text = "You are choosing: \(teachers[indexPath.row].fullName)"
         }
     }
     
@@ -101,12 +115,12 @@ class ViewController: UIViewController ,UITableViewDelegate,UITableViewDataSourc
         if editingStyle == UITableViewCellEditingStyle.delete {
             if editingStyle == UITableViewCellEditingStyle.delete {
                 if indexPath.section == 0 {
-                    teachers.remove(at: indexPath.row)
-                } else {
                     students.remove(at: indexPath.row)
+                } else {
+                    teachers.remove(at: indexPath.row)
                 }
                 
-                tableView.deleteRows(at: [indexPath], with: .left)
+                tableView.deleteRows(at: [indexPath], with: .fade)
             }
         }
     }
@@ -121,12 +135,12 @@ class ViewController: UIViewController ,UITableViewDelegate,UITableViewDataSourc
     //响应addView的prepare方法，unwind segue
     @IBAction func unwindToTeachers(sender : UIStoryboardSegue){
         if let sourceViewController = sender.source as? AddViewController,let teacher = sourceViewController.teacher {
-            let newIndexPath = IndexPath(row: teachers.count, section: 0)
+            let newIndexPath = IndexPath(row: teachers.count, section: 1)
             teachers.append(teacher)
             tableView.insertRows(at: [newIndexPath], with: .automatic)
         }
         if let sourceViewController = sender.source as? AddViewController,let student = sourceViewController.student {
-            let newIndexPath = IndexPath(row: students.count, section: 1)
+            let newIndexPath = IndexPath(row: students.count, section: 0)
             students.append(student)
             tableView.insertRows(at: [newIndexPath], with: .automatic)
         }

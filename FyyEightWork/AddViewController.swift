@@ -29,18 +29,27 @@ class AddViewController : UIViewController,UINavigationControllerDelegate,UIText
         return true
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
+        updateSaveButtonState()
     }
     //使saveButton在键盘输入时无效
     func textFieldDidBeginEditing(_ textField: UITextField) {
         teacherSaveButton.isEnabled = false
+        studentSaveButton.isEnabled = false
     }
     //如果输入为空则让saveButton无效
     private func updateSaveButtonState(){
-        let text = teacherTitle.text ?? ""
-        teacherSaveButton.isEnabled = !text.isEmpty
+        let teacherText = teacherTitle.text ?? ""
+        teacherSaveButton.isEnabled = !teacherText.isEmpty
+        let stuText = studentSno.text ?? ""
+        studentSaveButton.isEnabled = !stuText.isEmpty
     }
     override func viewDidLoad() {
-        
+        firstName.delegate = self
+        lastName.delegate = self
+        age.delegate = self
+        gender.delegate = self
+        teacherTitle.delegate = self
+        studentSno.delegate = self
     }
     
     override func didReceiveMemoryWarning() {

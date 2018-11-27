@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2443422121AD650F00667702 /* studentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2443422021AD650F00667702 /* studentCell.swift */; };
 		249553C6218DE49300E7BC46 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249553C5218DE49300E7BC46 /* AddViewController.swift */; };
 		3F3D7D00218D2C6E00A24277 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3D7CFF218D2C6E00A24277 /* AppDelegate.swift */; };
 		3F3D7D02218D2C6E00A24277 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3D7D01218D2C6E00A24277 /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2443422021AD650F00667702 /* studentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentCell.swift; sourceTree = "<group>"; };
 		249553C5218DE49300E7BC46 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		3F3D7CFC218D2C6E00A24277 /* FyyEightWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FyyEightWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F3D7CFF218D2C6E00A24277 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				3F3D7D01218D2C6E00A24277 /* ViewController.swift */,
 				249553C5218DE49300E7BC46 /* AddViewController.swift */,
 				3F3D7D03218D2C6E00A24277 /* Main.storyboard */,
+				2443422021AD650F00667702 /* studentCell.swift */,
 				3F3D7D06218D2C7000A24277 /* Assets.xcassets */,
 				3F3D7D08218D2C7000A24277 /* LaunchScreen.storyboard */,
 				3F3D7D0B218D2C7000A24277 /* Info.plist */,
@@ -262,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2443422121AD650F00667702 /* studentCell.swift in Sources */,
 				3F3D7D2E218D348400A24277 /* Person.swift in Sources */,
 				3F3D7D02218D2C6E00A24277 /* ViewController.swift in Sources */,
 				249553C6218DE49300E7BC46 /* AddViewController.swift in Sources */,

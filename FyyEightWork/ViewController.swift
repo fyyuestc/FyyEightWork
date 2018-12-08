@@ -119,8 +119,10 @@ class ViewController: UIViewController ,UITableViewDelegate,UITableViewDataSourc
                 } else {
                     teachers.remove(at: indexPath.row)
                 }
-                
-                tableView.deleteRows(at: [indexPath], with: .fade)
+                //也能删除
+                tableView.reloadData()
+                //增加了动画删除效果
+                //tableView.deleteRows(at: [indexPath], with: .fade)
             }
         }
     }
